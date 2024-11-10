@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:basic_api/core/api_data.dart';
 import 'package:basic_api/presentation/viewmodel/poke_list_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +23,14 @@ class _PokeListviewScreenState extends State<PokeListviewScreen> {
     return Scaffold(
       body: Consumer<PokeListViewmodel>(
           builder: (context, vm, child) {
-            log("PokeList Length : ${vm.pokemonList?.pokeMons?.length}");
             return Stack(
               alignment: Alignment.center,
               children: [
-                Center(
-                  child: Visibility(
-                      visible: vm.pokeListApiState == ApiState.loading,
-                      child: const CircularProgressIndicator()),
+               if(vm.pokeListApiState == ApiState.loading) const Center(
+                  child: CircularProgressIndicator(),
                 ),
-                Visibility(
-                  visible: vm.pokeListApiState == ApiState.success,
-                  child: ListView.builder(
-                      key: Key("listView"),
+               if(vm.pokeListApiState == ApiState.success) ListView.builder(
+                      key: const Key("listView"),
                       itemCount: vm.pokemonList?.pokeMons?.length,
                       itemBuilder: (context, pos) {
                         return Padding(
@@ -50,7 +43,6 @@ class _PokeListviewScreenState extends State<PokeListviewScreen> {
                               ),
                             ));
                       }),
-                ),
               ],
             );
           }

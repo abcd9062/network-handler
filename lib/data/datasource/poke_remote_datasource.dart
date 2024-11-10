@@ -6,4 +6,8 @@ class PokeRemoteDatasource {
   Future<ApiData> getPokeListData() async {
     return await apiHandler.get("https://pokeapi.co/api/v2/pokemon/?limit=25");
   }
+
+  Future<ApiData> getAllDogBreeds() async {
+    return await apiHandler.get("https://dogapi.dog/api/v2/breeds");
+  }
 }

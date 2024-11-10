@@ -1,4 +1,4 @@
-import 'package:basic_api/data/model/pokemon.dart';
+import 'package:basic_api/data/model/pokemon/pokemon.dart';
 import 'package:equatable/equatable.dart';
 
 class PokeListResponse extends Equatable {
